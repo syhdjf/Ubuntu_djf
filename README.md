@@ -1,2 +1,2 @@
-# my_vim
-my vim 
+# Ubuntu_djf
+Some thing used in my Ubuntu.
