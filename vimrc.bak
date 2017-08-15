@@ -1,51 +1,3 @@
-"vundle
-
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-    " alternatively, pass a path where Vundle should install plugins
-    "call vundle#begin('~/some/path/here')
-
-    " let Vundle manage Vundle, required
-"    Plugin 'VundleVim/Vundle.vim'
-
-    " The following are examples of different formats supported.
-    " Keep Plugin commands between vundle#begin/end.
-    " plugin on GitHub repo
-    "Plugin 'tpope/vim-fugitive'
-    " plugin from http://vim-scripts.org/vim/scripts.html
-    "Plugin 'L9'
-    " Git plugin not hosted on GitHub
-    "Plugin 'git://git.wincent.com/command-t.git'
-    " git repos on your local machine (i.e. when working on your own plugin)
-    "Plugin 'file:///home/gmarik/path/to/plugin'
-    " The sparkup vim script is in a subdirectory of this repo called vim.
-    " Pass the path to set the runtimepath properly.
-    "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-    " Install L9 and avoid a Naming conflict if you've already installed a
-    " different version somewhere else.
-    "Plugin 'ascenator/L9', {'name': 'newL9'}
-
-    " All of your Plugins must be added before the following line
-"    call vundle#end()            " required
-"    filetype plugin indent on    " required
-    " To ignore plugin indent changes, instead use:
-    "filetype plugin on
-    "
-    " Brief help
-    " :PluginList       - lists configured plugins
-    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-    "
-    " see :h vundle for more details or wiki for FAQ
-    " Put your non-Plugin stuff after this line
-
-
-
 ".vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -98,6 +50,15 @@ if exists("&mouse")
     "when you need to copy from vim, maybe you have to ':set mouse=' first
     "set mouse=
 endif
+
+" 选中状态下 Ctrl+c 复制
+"map <C-v> "*pa
+imap <C-v> <Esc>"*pa
+imap <C-a> <Esc>^
+imap <C-e> <Esc>$
+vmap <C-c> "+y
+set mouse=v
+
 "--------------------------------------------------------------------------
 "文件和备份，不需要，所以复位
 "--------------------------------------------------------------------------
@@ -245,20 +206,14 @@ function! ClosePair(char)
     endif
 endfunction
 
-"------------------------------------------------------------------------
-"拼写检查
-"------------------------------------------------------------------------
-map <leader>sn ]
-map <leader>sp [
-map <leader>sa zg
-map <leader>s? z=
-
 "--------------------------------------------------------------------------------
 "状态栏相关的设置
 "--------------------------------------------------------------------------------
 set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]   " 状态栏的显示格式
 set laststatus=2   " 总显示最后一个窗口的状态行；设为1则窗口数多于一个的时候显示最后一个窗口的状态行；0不显示最后一个窗口的状态行   
 set ruler          " 标尺，用于显示光标位置的行号和列号，逗号分隔。每个窗口都有自己的标尺。如果窗口有状态行，标尺在那里显示。否则，它显示在屏幕的最后一行上。
+set cul "高亮光标所在行
+autocmd InsertEnter * se cul    " 用浅色高亮当前行"
 
 "--------------------------------------------------------------------------------
 "代码折叠
@@ -278,8 +233,6 @@ set ruler          " 标尺，用于显示光标位置的行号和列号，逗�
 
 
 
-
-
 """""""""""""""""""""""""""""""""""""
 "plugins
 """""""""""""""""""""""""""""""""""""
@@ -287,14 +240,13 @@ set ruler          " 标尺，用于显示光标位置的行号和列号，逗�
 "********************************************************************************
 "                                                                               
 "  插件设置                                                                       
-"scope    ctags     omnicppcomplete        Taglist        QuickFix    MiniBufferExplorer       
-"NERDTree    WinManager        A         grep    NERD Commenter    SuperTag           
-"c-support                                                                       
+"cscope    ctags     omnicppcomplete        Taglist        QuickFix    MiniBufferExplorer       
+"NERDTree    WinManager  A   c-support Ack
 "-------------------------------------------------------------------------------
 "快捷键设置                                                                       
 "F2        自动补全代码                                                               
 "F3        根据头文件补全代码                                                           
-"F4        grep                                                                   
+"F4        ack/ag                                                                   
 "F5        打开cscope搜索结果                                                                   
 "F6        关闭cscope搜索结果
 "F7        切换到前一项
@@ -392,7 +344,7 @@ set ruler          " 标尺，用于显示光标位置的行号和列号，逗�
 
 
 
-    " -- MiniBufferExplorer setting--
+" -- MiniBufferExplorer setting--
     let g:miniBufExplMapWindowNavVim = 1 " 按下Ctrl+h/j/k/l，可以切换到当前窗口的上下左右窗口
     let g:miniBufExplMapWindowNavArrows = 1 " 按下Ctrl+箭头，可以切换到当前窗口的上下左右窗口
     let g:miniBufExplMapCTabSwitchBufs = 1 " 启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
@@ -401,10 +353,9 @@ set ruler          " 标尺，用于显示光标位置的行号和列号，逗�
     let g:miniBufExplForceSyntaxEnable = 1
     let g:minibufExplorerMoreThanOne=2
 
-    "--NERDTree setting--
+"--NERDTree setting--
     let g:NERDTree_title="[NERDTree]" 
     "let g:winManagerWindowLayout="NERDTree|TagList" 
-    "nmap <F9> :NERDTreeToggle<CR>
      
     function! NERDTree_Start() 
         exec 'NERDTree' 
@@ -414,43 +365,59 @@ set ruler          " 标尺，用于显示光标位置的行号和列号，逗�
         return 1 
     endfunction 
      
- "-- WinManager setting --
+"-- WinManager setting --
     let g:winManagerWindowLayout='FileExplorer|TagList' " 设置我们要管理的插件
     let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
     nmap <F9> :WMToggle<cr>
 
 
- "-- A setting --
+"-- A setting --
     nnoremap <silent> <F12> :A<CR>
 
- "-- grep setting --
-    nnoremap <silent> <F4> :Grep<CR>"
+"-- Ack setting --
+"need install 
+"sudo apt-get install ack-grep
+"sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+"apt-get install silversearcher-ag
 
- "-- NERD Commenter setting --
-  "  ,ca，在可选的注释方式之间切换，比如C/C++ 的块注释和行注释//
-  "  ,cc，注释当前行
-  "  ,c，切换注释/非注释状态
-  "  ,cs，以”性感”的方式注释
-  "  ,cA，在当前行尾添加注释符，并进入Insert模式
-  "  ,cu，取消注释
-  "  Normal模式下，几乎所有命令前面都可以指定行数
-  "  Visual模式下执行命令，会对选中的特定区块进行注释/反注释
-    let mapleader="," 
-   
+    " Use the the_silver_searcher if possible (much faster than Ack)
+    if executable('ag')
+        "let g:ackprg = 'ag --vimgrep'
+        let g:ackprg = 'ag --nogroup --nocolor --column'
+    endif
 
- "-- SuperTag setting --
-    "let g:SuperTabDefaultCompletionType="context"
+    "! 表示搜索后不自动跳转到第一项
+    vnoremap <silent> <F4> :call VisualSelection()<CR>
 
- "-- c-support setting --
+"-- c-support setting --
  "解压，有c-support、ftplugin、doc、plugin四个文件，拷贝到$HOME/.vim/目录下。并在.vimrc中用命令filetype plugin on激活插件功能。
  "功能一：自动为*.c文件添加文件头说明
  "$ vim ~/.vim/c-support/templates/Templates 可改变头说明
  "快捷键帮助信息详见doc的pdf文档
 
 
-"QuickFix
+"-- QuickFix --
 map <F5> :copen<CR>
 map <F6> :cclose<CR>
 map <F7> :cp<CR>
 map <F8> :cn<CR>
 
+
+
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction 
+
+function! VisualSelection() range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    call CmdLine("Ack! " . l:pattern)
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
