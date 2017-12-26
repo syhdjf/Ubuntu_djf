@@ -1,14 +1,12 @@
 #!/bin/sh
-OUT_PATH=${PWD}
-SRC_PATH=${PWD}
 
-if [ -d ${OUT_PATH} ];
-then
-    echo "Use current directory \"${OUT_PATH}\""
-else
-    echo "mkdir \"${OUT_PATH}\""
-    mkdir ${OUT_PATH}
-fi
+#for rockchipRK3188
+#OUT_PATH=${PWD}
+#SRC_PATH=${PWD}
+
+#for quanzhi R58
+#OUT_PATH=${PWD}
+#SRC_PATH=${PWD}/linux-3.4
 
 
 find -L ${SRC_PATH} -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java" | grep -vi "${OUT_PATH}/arch/" >${OUT_PATH}/cscope.files
