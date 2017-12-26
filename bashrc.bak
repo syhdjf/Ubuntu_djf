@@ -119,6 +119,7 @@ export PATH
 
 #djf add for ccache
 export USE_CCACHE=1
+export CCACHE_DIR=/home/djf/ccache/.ccache
 
 #djf add for change jdk
 alias cjdk='sudo update-alternatives --config jdk'
