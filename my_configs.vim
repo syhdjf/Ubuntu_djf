@@ -6,6 +6,16 @@
  "显示行号
  set number
 
+"打开，关闭NERDTree
+map <F2> :NERDTreeFind<cr>
+map <F3> :NERDTreeClose<cr>
+"利用goyo插件，居中显示代码
+map <F4> :Goyo<cr>
+"打开bufexplorer
+map <F5> :BufExplorer<cr>
+"打开最近的文件
+map <F6> :MRU<cr>
+
 "-- Cscope setting --
      if has("cscope")
          set csprg=/usr/bin/cscope        " 指定用来执行cscope的命令
