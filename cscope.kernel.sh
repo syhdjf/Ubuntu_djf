@@ -10,7 +10,7 @@
 
 #for mt8765
 #OUT_PATH=${PWD}
-#SRC_PATH=${PWD}/kernel-4.4
+#SRC_PATH=${PWD}
 
 find -L ${SRC_PATH} -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java" | grep -vi "${OUT_PATH}/arch/" >${OUT_PATH}/cscope.files
 
@@ -31,6 +31,7 @@ find -L ${SRC_PATH}/arch/arm -name "*.h" -o -name "*.s" -o -name "*.S" -o -name 
 
 #for mt8765
 #find -L ${SRC_PATH}/arch/arm/mach-mediatek -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' >>${OUT_PATH}/cscope.files
+#find -L ${SRC_PATH}/../out/target/product/tb8765ap1_bsp_1g/obj/KERNEL_OBJ -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' >>${OUT_PATH}/cscope.files
 
 echo "For create ctags and cscope databases.."
 #ctags -L ${OUT_PATH}/cscope.files -f ${OUT_PATH}/tags && cscope -bkq
