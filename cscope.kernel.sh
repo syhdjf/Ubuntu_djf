@@ -8,26 +8,32 @@
 #OUT_PATH=${PWD}
 #SRC_PATH=${PWD}/linux-3.4
 
+#for quanzhi R818
+#OUT_PATH=${PWD}
+#SRC_PATH=${PWD}/linux-4.9
+
 #for mt8765
 #OUT_PATH=${PWD}
 #SRC_PATH=${PWD}
 
-find -L ${SRC_PATH} -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java" | grep -vi "${OUT_PATH}/arch/" >${OUT_PATH}/cscope.files
+find -L ${SRC_PATH} -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java" | grep -vi "${SRC_PATH}/arch/" >${OUT_PATH}/cscope.files
 
-find -L ${SRC_PATH}/arch/arm -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java" | grep -vi "${OUT_PATH}/arch/arm/mach" | grep -vi "${OUT_PATH}/arch/arm/plat" >>${OUT_PATH}/cscope.files
+find -L ${SRC_PATH}/arch/arm -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java" | grep -vi "${SRC_PATH}/arch/arm/mach" | grep -vi "${OUT_PATH}/arch/arm/plat" >>${OUT_PATH}/cscope.files
 
 #for rockchip RK3188
-#find -L ${SRC_PATH}/arch/arm/mach-rk3188 -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' | grep -vi "${OUT_PATH}/arch/arm/mach-rk3188/board-" >>${OUT_PATH}/cscope.files
+#find -L ${SRC_PATH}/arch/arm/mach-rk3188 -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' | grep -vi "${SRC_PATH}/arch/arm/mach-rk3188/board-" >>${OUT_PATH}/cscope.files
 
 #echo ${OUT_PATH}/arch/arm/mach-rk3188/board-rk3188-box.c >> ${OUT_PATH}/cscope.files
 
-#find -L ${SRC_PATH}/arch/arm/mach-rk30 -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"|grep -vi '\.git' | grep -vi "${OUT_PATH}/arch/arm/mach-rk30/board-" >>${OUT_PATH}/cscope.files
+#find -L ${SRC_PATH}/arch/arm/mach-rk30 -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"|grep -vi '\.git' | grep -vi "${SRC_PATH}/arch/arm/mach-rk30/board-" >>${OUT_PATH}/cscope.files
 
 #find -L ${SRC_PATH}/arch/arm/plat-rk -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"|grep -vi '\.git' >>${OUT_PATH}/cscope.files
 
 
-#for quanzhi R58
+#for quanzhi R58 and R818
 #find -L ${SRC_PATH}/arch/arm/mach-sunxi -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' >>${OUT_PATH}/cscope.files
+#for quanzhi R818
+#find -L ${SRC_PATH}/arch/arm64/ -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' >>${OUT_PATH}/cscope.files
 
 #for mt8765
 #find -L ${SRC_PATH}/arch/arm/mach-mediatek -name "*.h" -o -name "*.s" -o -name "*.S" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c" -o -name "*.xml" -o -name "*.mk" -o -name "*.java"| grep -vi '\.git' >>${OUT_PATH}/cscope.files
